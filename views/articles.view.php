@@ -9,7 +9,7 @@
         echo "<h3>", $newsitem["title"], "</h3>";
         echo "<p>", $newsitem["text"], "</p>";
         echo "<p>", $newsitem["created"], " by user: " , $newsitem["userid"], "</p>";
-        if(isLoggedIn()){
+        if(isLoggedIn() && ($newsitem["userid"] == $_SESSION["userid"])){
             $id = $newsitem['articleid'];
             $newsid = 'deleteNews' . $id;
             echo "<a id=$newsid onClick='confirmDelete($id)' href=/poista_uutinen/$id>Poista</a>". " ";
