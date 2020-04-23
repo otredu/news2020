@@ -6,10 +6,22 @@ function cleanDump($data){
     echo "</pre>";
 }
 
-function cleanUp($userinput){
+function cleanUpInput($userinput){
     $input = trim($userinput);
-    $cleaninput = htmlspecialchars($input);
+    $cleaninput = filter_var($input,FILTER_SANITIZE_STRING);
     return $cleaninput;
+}
+
+function cleanUpOutput($useroutput){
+    $output = trim($useroutput);
+    $cleanoutput = htmlspecialchars($output);
+    return $cleanoutput;
+}
+
+function hashPassword($password){
+    $password = trim($password);
+    $hashedpassword = password_hash($password,PASSWORD_DEFAULT);
+    return $hashedpassword;
 }
 
 function isLoggedIn(){

@@ -50,11 +50,12 @@ class Request implements IRequest
   {
     $parts = explode("/", $this->requestUri);
     
-    if(count($parts) === 3){
+    if(count($parts) === 3 ){
       $id = $parts[2];
-      return $id;
-    } else {
-      return null;
-    }
+      if(filter_var($id, FILTER_VALIDATE_INT)){
+        return $id;
+      }
+    } 
+    return null;
   }
 }

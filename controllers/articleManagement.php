@@ -16,7 +16,7 @@ function addArticleController(){
         $removetime = $_POST['removedate'];
         $pdo = connectDB();
         $userid = $_SESSION["userid"];
-        addArticle($pdo, [$title, $text, $time, $removetime, $userid]); 
+        addArticle($pdo, $title, $text, $time, $removetime, $userid); 
         header("Location: /");    
     } else {
         require "views/newArticle.view.php";
@@ -56,7 +56,7 @@ function updateArticleController($id){
         $pdo = connectDB();
 
         try{
-            updateArticle($pdo, [$title, $text, $time, $removetime, $id]);
+            updateArticle($pdo, $title, $text, $time, $removetime, $id);
             header("Location: /");    
         } catch (PDOException $e){
                 echo "Virhe uutista päivitettäessä: " . $e->getMessage();

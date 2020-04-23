@@ -8,10 +8,9 @@ function registerController(){
         $firstname = $_POST['firstname'];
         $username = $_POST['username'];
         $password = $_POST['password'];
-        $hashedpswrd = password_hash($password,PASSWORD_DEFAULT);
         $pdo = connectDB();
         try {
-            addUser($pdo, [$firstname, $lastname, $username, $hashedpswrd]);
+            addUser($pdo, $firstname, $lastname, $username, $password);
             header("Location: /login"); 
         } catch (PDOException $e){
             echo "Virhe tietokantaan tallennettaessa: " . $e->getMessage();

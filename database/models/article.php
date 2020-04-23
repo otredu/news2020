@@ -7,14 +7,18 @@ function getAllArticles($pdo){
     return $all;
 }
 
-function addArticle($pdo, $data){
+function addArticle($pdo, $title, $text, $time, $removetime, $userid){
+    $cleantitle = cleanUpInput($title); 
+    $cleantext = cleanUpInput($text);
+    $cleantime = cleanUpInput($time);
+    $cleanremovetime = cleanUpInput($removetime);
+    $data = [$cleantitle, $cleantext, $cleantime, $cleanremovetime, $userid];
     $sql = "INSERT INTO articles (title, text, created, expirydate, userid) VALUES(?,?,?,?,?)";
     $stm=$pdo->prepare($sql);
     return $stm->execute($data);
 }
 
-function getArticleById($pdo, $id)
-{
+function getArticleById($pdo, $id){
     $sql = "SELECT * FROM articles WHERE articleid=?";
     $stm= $pdo->prepare($sql);
     $stm->execute([$id]);
@@ -28,7 +32,12 @@ function deleteArticle($pdo, $id){
     return $stm->execute([$id]);
 }
 
-function updateArticle($pdo, $data){
+function updateArticle($pdo, $title, $text, $time, $removetime, $articleid){
+    $cleantitle = cleanUpInput($title); 
+    $cleantext = cleanUpInput($text);
+    $cleantime = cleanUpInput($time);
+    $cleanremovetime = cleanUpInput($removetime);
+    $data = [$cleantitle, $cleantext, $time, $removetime, $articleid];
     $sql = "UPDATE articles SET title = ?, text = ?, created = ?, expirydate = ? WHERE articleid = ?";
     $stm = $pdo->prepare($sql);
     return $stm->execute($data);
