@@ -6,7 +6,7 @@
 - Asenna XAMPP ja composer (https://getcomposer.org/)
 - Siirry projektin juureen: cd news2020 
 - Aja CMD:ssä: composer install
-- Käynnistä XAMPP, vie sinne PhpMyAdminillä tietokanta kansiosta database_dump
+- Käynnistä XAMPP, tee sinne tietokanta jonka nimi on "news" ja vie sinne PhpMyAdminillä tietokanta kansiosta database_dump
 - Siirry CMD:ssä kansioon public: cd public
 - Käynnistä serveri: php -S localhost:8888
 - Avaa selaimessa: localhost:8888
